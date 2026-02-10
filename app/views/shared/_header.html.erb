@@ -1,0 +1,23 @@
+<nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary mb-2">
+  <div class="container-fluid">
+    <%= link_to "コンビニアレンジ飯", new_user_registration_path, class: "navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><%= link_to "レシピ一覧", posts_path, class: "nav-link" %></li>
+        <% if user_signed_in? %>
+          <li class="nav-item"><%= link_to "レシピ投稿", new_post_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "マイレシピ", posts_user_path(current_user), class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "保存したレシピ", bookmarked_posts_user_path(current_user), class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, class: "nav-link", data: { turbo_method: :delete } %></li>
+          <li class="nav-item"><%= link_to "アカウント", user_path(current_user), class: "nav-link" %></li>
+        <% else %>
+          <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "アカウント登録", new_user_registration_path, class: "nav-link" %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

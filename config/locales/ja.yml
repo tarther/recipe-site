@@ -1,0 +1,17 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: ユーザー名
+        email: メールアドレス
+      post:
+        title: レシピ名
+        description: 概要
+        ingredients: 材料
+        steps: 手順
+        image: 写真
+        store: コンビニ
+        store:
+          seven: セブンイレブン
+          lawson: ローソン
+          famima: ファミリーマート

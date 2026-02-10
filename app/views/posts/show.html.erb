@@ -1,0 +1,66 @@
+<div class="col-md-5 col-sm-8 mx-auto">
+  <p><%= @post.store %></p>
+
+  <%= image_tag @post.image, class: "w-100 h-auto" %>
+
+  <h3><%= @post.title %></h3>
+
+  <h5>紹介</h5>
+  <p><%= @post.description %></p>
+
+  <h5>材料</h5>
+  <p><%= @post.ingredients %></p>
+
+  <h5>手順</h5>
+  <p><%= @post.steps %></p>
+
+  <div class="d-flex justify-content-end">
+    <p class="me-2"><%= link_to @post.user.name, posts_user_path(@post.user) %></p>
+    
+    <!--いいね--!>
+    <% if @post.liked_users.include?(current_user) %>
+      <%= link_to post_like_path(@post), data: { "turbo-method": :delete } do %>
+        <i class="bi bi-heart-fill text-danger"></i>
+      <% end %>
+      <%= @post.likes.count %>
+    <% elsif current_user %>
+      <%= link_to post_like_path(@post), data: { "turbo-method": :post } do %>
+        <i class="bi bi-heart"></i>
+      <% end %>
+      <%= @post.likes.count %>
+    <% else %>
+      <%= link_to new_user_session_path do %>
+        <i class="bi bi-heart"></i>
+      <% end %>
+      <%= @post.likes.count %>
+    <% end %>
+
+    <!--ブックマーク--!>
+    <% if @post.bookmarked_users.include?(current_user) %>
+      <%= link_to post_bookmark_path(@post), data: { "turbo-method": :delete } do %>
+        <i class="bi bi-bookmark-fill text-primary"></i>
+      <% end %>
+      <%= @post.bookmarks.count %>
+    <% elsif current_user %>
+      <%= link_to post_bookmark_path(@post), data: { "turbo-method": :post } do %>
+        <i class="bi bi-bookmark"></i>
+      <% end %>
+      <%= @post.bookmarks.count %>
+    <% else %>
+      <%= link_to new_user_session_path do %>
+        <i class="bi bi-bookmark"></i>
+      <% end %>
+      <%= @post.bookmarks.count %>
+    <% end %>
+  
+  </div>
+
+  <!--編集・削除--!>
+  <% if current_user == @post.user %>
+    <div class="d-flex justify-content-center">
+      <p class="me-3"><%= link_to "編集", edit_post_path(@post) %></p>
+      <p><%= link_to "削除", post_path(@post), data: { turbo_method: :delete } %></p>
+    </div>
+  <% end %>
+
+</div>

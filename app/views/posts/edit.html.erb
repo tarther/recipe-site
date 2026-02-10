@@ -1,0 +1,24 @@
+<div class="col-md-6 mx-auto">
+  <%= bootstrap_form_with(model: [current_user, @post], url: posts_path(@post)) do |f| %>
+    <%= f.collection_radio_buttons :store, [["セブンイレブン", "seven"], ["ローソン", "lawson"], ["ファミリーマート", "famima"]], :last, :first, inline: true do |b| %>
+      <div class="form-check form-check-inline">
+        <%= b.radio_button(class: "form-check-input") %>
+        <%= b.label(class: "form-check-label") %>
+      </div>
+    <% end %>
+
+    <%= f.text_field :title %>
+
+    <%= f.file_field :image %>
+
+    <%= f.text_area :description %>
+
+    <%= f.text_area :ingredients %>
+
+    <%= f.text_area :steps %>
+    
+    <div class="text-center">
+      <%= f.primary "編集する" %>
+    </div>
+  <% end %>
+</div>

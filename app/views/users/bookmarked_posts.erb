@@ -1,0 +1,14 @@
+<div class="row col-md-9 mx-auto">
+  <% @posts.each do |post| %>
+    <div class="col-md-3 col-sm-4 col-6 mb-3">
+      <div class="card h-100 text-center">
+        <div class="ratio ratio-1x1">
+          <%= image_tag post.image, class: "w-100 h-100 object-fit-cover" %>
+        </div>
+        <h5 class="card-title"><%= post.title %></h5>
+
+        <%= link_to "", post_path(post), class: "stretched-link" %>
+      </div>
+    </div>
+  <% end %>
+</div>

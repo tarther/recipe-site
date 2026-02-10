@@ -1,0 +1,40 @@
+<div class="row">
+  <!--商品名から検索--!>
+  <div class="col-md-6 text-center">
+    <form class="d-flex justify-content-center mb-3" role="search" method="get" >
+      <input class="form-control w-50 me-2" type="search" name="ingredient"
+            placeholder="商品名を入力">
+      <button class="btn btn-primary" type="submit">
+        <i class="bi bi-search"></i> 検索
+      </button>
+    </form>
+  </div>
+
+  <!--コンビニチェーンから絞り込み--!>
+  <div class="col-md-6">
+    <form class="mb-3" method="get">
+      <select name="store" class="form-select w-50 mb-2 mx-auto" onchange="this.form.submit()">
+        <option value=""><%= params[:store].present? ? "一覧" : "チェーンで絞り込み" %></option>
+        <option value="seven" <%= "selected" if params[:store] == "seven" %>>セブンイレブン</option>
+        <option value="lawson" <%= "selected" if params[:store] == "lawson" %>>ローソン</option>
+        <option value="famima"  <%= "selected" if params[:store] == "famima" %>>ファミリーマート</option>
+      </select>
+    </form>
+  </div>
+</div>
+
+<!--一覧表示--!>
+<div class="row col-md-9 mx-auto">
+  <% @posts.each do |post| %>
+    <div class="col-md-3 col-sm-4 col-6 mb-3">
+      <div class="card h-100 text-center">
+        <div class="ratio ratio-1x1">
+          <%= image_tag post.image, class: "w-100 h-100 object-fit-cover" %>
+        </div>
+        <h5 class="card-title"><%= post.title %></h5>
+
+        <%= link_to "", post_path(post), class: "stretched-link" %>
+      </div>
+    </div>
+  <% end %>
+</div>
