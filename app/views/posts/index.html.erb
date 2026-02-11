@@ -15,9 +15,9 @@
     <form class="mb-3" method="get">
       <select name="store" class="form-select w-50 mb-2 mx-auto" onchange="this.form.submit()">
         <option value=""><%= params[:store].present? ? "一覧" : "チェーンで絞り込み" %></option>
-        <option value="seven" <%= "selected" if params[:store] == "seven" %>>セブンイレブン</option>
-        <option value="lawson" <%= "selected" if params[:store] == "lawson" %>>ローソン</option>
-        <option value="famima"  <%= "selected" if params[:store] == "famima" %>>ファミリーマート</option>
+        <option value="セブンイレブン" <%= "selected" if params[:store] == "セブンイレブン" %>>セブンイレブン</option>
+        <option value="ローソン" <%= "selected" if params[:store] == "ローソン" %>>ローソン</option>
+        <option value="ファミリーマート"  <%= "selected" if params[:store] == "ファミリーマート" %>>ファミリーマート</option>
       </select>
     </form>
   </div>

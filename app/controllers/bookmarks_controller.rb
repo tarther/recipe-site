@@ -1,4 +1,6 @@
 class BookmarksController < ApplicationController
+  before_action :authenticate_user!
+  
   def create
     @post = Post.find(params[:post_id])
     @bookmark = @post.bookmarks.new(user: current_user)

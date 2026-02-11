@@ -1,6 +1,6 @@
 <div class="col-md-6 mx-auto">
   <%= bootstrap_form_with(model: [current_user, @post], url: posts_path(@post)) do |f| %>
-    <%= f.collection_radio_buttons :store, [["セブンイレブン", "seven"], ["ローソン", "lawson"], ["ファミリーマート", "famima"]], :last, :first, inline: true do |b| %>
+    <%= f.collection_radio_buttons :store, [["セブンイレブン", "セブンイレブン"], ["ローソン", "ローソン"], ["ファミリーマート", "ファミリーマート"]], :last, :first, inline: true do |b| %>
       <div class="form-check form-check-inline">
         <%= b.radio_button(class: "form-check-input") %>
         <%= b.label(class: "form-check-label") %>
@@ -18,7 +18,7 @@
     <%= f.text_area :steps %>
     
     <div class="text-center">
-      <%= f.primary "編集する" %>
+      <%= f.primary "更新する" %>
     </div>
   <% end %>
 </div>

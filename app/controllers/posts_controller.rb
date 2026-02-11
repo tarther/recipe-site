@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+
   def index
     @posts = Post.all
     @posts = @posts.search_ingredient(params[:ingredient])
@@ -42,5 +45,10 @@ class PostsController < ApplicationController
   private
   def post_params
     params.require(:post).permit(:title, :image, :description, :steps, :ingredients, :store)
+  end
+
+  def ensure_correct_user
+    @post = Post.find(params[:id])
+    redirect_to posts_path unless @post.user == current_user
   end
 end
