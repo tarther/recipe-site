@@ -89,8 +89,8 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: recipe-site_db
-    username: recipe-site_db_user
+    database: recipe_site_db_7cbo
+    username: recipe_site_db_7cbo_user
     password: vKDn9pfj4fBI0TLsUj4wCI6Bw41mDy7j
   cache:
     <<: *primary_production
