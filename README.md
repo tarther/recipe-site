@@ -1,5 +1,5 @@
 # プロジェクト名
-コンビ二アレンジ飯
+コンビニアレンジ飯
 
 # デモ
 https://recipe-site-66sz.onrender.com
