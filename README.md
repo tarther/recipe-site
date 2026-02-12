@@ -5,7 +5,7 @@
 https://recipe-site-66sz.onrender.com
 
 # 使用技術
-- Ruby3.4
+- Ruby 3.4
 - Rails 8
 - Postgresql 18
 
