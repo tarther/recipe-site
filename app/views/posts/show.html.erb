@@ -22,12 +22,12 @@
       <%= link_to post_like_path(@post), data: { "turbo-method": :delete } do %>
         <i class="bi bi-heart-fill text-danger"></i>
       <% end %>
-      <%= @post.likes.count %>
+      <%= @post.likes_count %>
     <% else %>
       <%= link_to post_like_path(@post), data: { "turbo-method": :post } do %>
         <i class="bi bi-heart"></i>
       <% end %>
-      <%= @post.likes.count %>
+      <%= @post.likes_count %>
     <% end %>
 
     <!--ブックマーク--!>
@@ -35,12 +35,12 @@
       <%= link_to post_bookmark_path(@post), data: { "turbo-method": :delete } do %>
         <i class="bi bi-bookmark-fill text-primary"></i>
       <% end %>
-      <%= @post.bookmarks.count %>
+      <%= @post.bookmarks_count %>
     <% else %>
       <%= link_to post_bookmark_path(@post), data: { "turbo-method": :post } do %>
         <i class="bi bi-bookmark"></i>
       <% end %>
-      <%= @post.bookmarks.count %>
+      <%= @post.bookmarks_count %>
     <% end %>
   
   </div>
