@@ -71,8 +71,4 @@ gem "devise-i18n"
 
 gem "bootstrap_form"
 
-#gem "font-awesome-sass"
-
-#gem "cssbundling-rails"
-
-#gem "foreman"
+gem "csv", "~> 3.3"
