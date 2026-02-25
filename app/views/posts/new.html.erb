@@ -1,18 +1,23 @@
 <div class="col-md-6 col-sm-9 mx-auto">
   <%= bootstrap_form_with(model: [current_user, @post], url: posts_path(@post)) do |f| %>
-    <%= f.collection_radio_buttons :store, [["セブンイレブン", "セブンイレブン"], ["ローソン", "ローソン"], ["ファミリーマート", "ファミリーマート"]], :last, :first, inline: true do |b| %>
-      <div class="form-check form-check-inline">
-        <%= b.radio_button(class: "form-check-input") %>
-        <%= b.label(class: "form-check-label") %>
-      </div>
-    <% end %>
 
-    <%= f.text_field :title %>
-
-    <%= f.file_field :image %>
-  
-    <label class="mb-2">使用するコンビニ商品</label>
     <div data-controller="autocomplete">
+      <label class="mb-2">コンビニチェーン</label>
+      <div class="form-check form-check-inline mb-2">
+        <%= f.radio_button :store, "セブンイレブン", true, class: "form-check-input", data: { autocomplete_target: "store" } %>
+      </div>
+      <div class="form-check form-check-inline mb-2">
+        <%= f.radio_button :store, "ローソン", false, class: "form-check-input", data: { autocomplete_target: "store" } %>
+      </div>
+      <div class="form-check form-check-inline mb-2">
+        <%= f.radio_button :store, "ファミリーマート", false, class: "form-check-input", data: { autocomplete_target: "store" } %>
+      </div>
+
+      <%= f.text_field :title %>
+
+      <%= f.file_field :image %>
+    
+      <label class="mb-2">使用するコンビニ商品</label>
       <div class="mb-3 position-relative">
         <%= text_field_tag :product_1_search, "",
               class: "form-control",
@@ -53,7 +58,7 @@
     <label class="mb-2">その他の材料</label>
     <div class="row">
       <% 6.times do |i| %>
-        <div class="col-md-6 mb-2">
+        <div class="col-md-6 col-sm-6 mb-2">
           <%= text_field_tag "post[other_ingredients][]", "",
                 class: "form-control",
                 placeholder: "材料（任意）" %>
@@ -67,4 +72,4 @@
       <%= f.primary "投稿する" %>
     </div>
   <% end %>
-</div>
+  </div>

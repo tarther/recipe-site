@@ -1,7 +1,12 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["input", "suggestions"]
+  static targets = ["input","store","suggestions"]
+
+  get selectedStore() {
+    const checked = this.storeTargets.find(radio => radio.checked)
+    return checked ? checked.value : null
+  }
 
   connect() {
     this.selecting = false
@@ -21,12 +26,14 @@ export default class extends Controller {
 
   search(input, suggestions) {
     const query = input.value
+    const store = this.selectedStore
+
     if (query.length < 2) {
       suggestions.innerHTML = ""
       return
     }
 
-    fetch(`/products/search_products?q=${query}`)
+    fetch(`/products/search_products?q=${query}&store=${store}`)
       .then(res => res.json())
       .then(data => {
         suggestions.innerHTML = ""

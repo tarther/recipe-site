@@ -31,4 +31,5 @@ Rails.application.routes.draw do
     resource :bookmark, only: [:create, :destroy]
   end
 
+  get "/products/search_products" => "products#search_products"
 end

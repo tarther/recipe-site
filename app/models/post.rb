@@ -15,7 +15,10 @@ class Post < ApplicationRecord
   
   #商品名検索
   scope :search_product, ->(product) {
-    where("title LIKE :ing OR product_1 LIKE :ing", ing: "%#{product}%") if product.present?
+    joins("LEFT JOIN products AS p1 ON posts.product_1 = p1.code")
+    .joins("LEFT JOIN products AS p2 ON posts.product_2 = p2.code")
+    .joins("LEFT JOIN products AS p3 ON posts.product_3 = p3.code")
+    .where("title LIKE :pro OR p1.name LIKE :pro OR p2.name LIKE :pro OR p3.name LIKE :pro", pro: "%#{product}%") if product.present?
   }
   
   #チェーン検索
