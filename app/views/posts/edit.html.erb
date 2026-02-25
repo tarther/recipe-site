@@ -11,9 +11,55 @@
 
     <%= f.file_field :image %>
 
-    <%= f.text_area :description %>
+    <label class="mb-2">使用するコンビニ商品</label>
+    <div data-controller="autocomplete">
+      <div class="mb-3 position-relative">
+        <%= text_field_tag :product_1_search, @post.product_1,
+              class: "form-control",
+              placeholder: "商品1を入力(必須)",
+              data: { autocomplete_target: "input" } %>
 
-    <%= f.text_area :ingredients %>
+        <ul class="list-group position-absolute w-100 z-1000"
+            data-autocomplete-target="suggestions"></ul>
+
+        <%= f.hidden_field :product_1 %>
+      </div>
+
+      <div class="mb-3 position-relative">
+        <%= text_field_tag :product_2_search, @post.product_2,
+              class: "form-control",
+              placeholder: "商品2を入力(任意)",
+              data: { autocomplete_target: "input" } %>
+
+        <ul class="list-group position-absolute w-100 z-1000"
+            data-autocomplete-target="suggestions"></ul>
+
+        <%= f.hidden_field :product_2 %>
+      </div>
+
+      <div class="mb-3 position-relative">
+        <%= text_field_tag :product_3_search, @post.product_3,
+              class: "form-control",
+              placeholder: "商品3を入力(任意)",
+              data: { autocomplete_target: "input" } %>
+
+        <ul class="list-group position-absolute w-100 z-1000"
+            data-autocomplete-target="suggestions"></ul>
+
+        <%= f.hidden_field :product_3 %>
+      </div>
+    </div>
+
+    <label class="mb-2">その他の材料</label>
+    <div class="row">
+      <% 6.times do |i| %>
+        <div class="col-md-6 mb-2">
+          <%= text_field_tag "post[other_ingredients][]", "",
+                class: "form-control",
+                placeholder: "材料（任意）" %>
+        </div>
+      <% end %>
+    </div>
 
     <%= f.text_area :steps %>
     

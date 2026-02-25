@@ -5,7 +5,7 @@ class CreatePosts < ActiveRecord::Migration[8.1]
       t.text :description
       t.text :ingredients
       t.text :steps
-      t.integer :likes_count
+      #t.integer :likes_count
       t.string :store
       t.references :user, null: false, foreign_key: true
 

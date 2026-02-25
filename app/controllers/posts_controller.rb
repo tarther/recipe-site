@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
-    @posts = @posts.search_ingredient(params[:ingredient])
+    @posts = @posts.search_product(params[:product])
     @posts = @posts.filter_store(params[:store])
   end
 
@@ -20,6 +20,8 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
     if @post.save
       redirect_to posts_path
+    else
+      render :new
     end
   end
 
@@ -42,9 +44,10 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
+
   private
   def post_params
-    params.require(:post).permit(:title, :image, :description, :steps, :ingredients, :store)
+    params.require(:post).permit(:title, :image, :steps, :store, :product_1, :product_2, :product_3, other_ingredients: [])
   end
 
   def ensure_correct_user

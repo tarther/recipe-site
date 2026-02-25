@@ -5,11 +5,15 @@
 
   <h3><%= @post.title %></h3>
 
-  <h5>紹介</h5>
-  <p><%= @post.description %></p>
+  <h5>使用するコンビニ商品</h5>
+  <% @post.product_names.each do |pro| %>
+    <p><%= pro %></p>
+  <% end %>
 
-  <h5>材料</h5>
-  <p><%= @post.ingredients %></p>
+  <h5>それ以外の材料</h5>
+  <% @post.other_ingredients.each do |ing| %>
+    <p><%= ing %></p>
+  <% end %>
 
   <h5>手順</h5>
   <p><%= @post.steps %></p>
