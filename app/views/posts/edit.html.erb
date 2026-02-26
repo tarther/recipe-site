@@ -1,20 +1,25 @@
 <div class="col-md-6 mx-auto">
-  <%= bootstrap_form_with(model: [current_user, @post], url: posts_path(@post)) do |f| %>
-    <%= f.collection_radio_buttons :store, [["セブンイレブン", "セブンイレブン"], ["ローソン", "ローソン"], ["ファミリーマート", "ファミリーマート"]], :last, :first, inline: true do |b| %>
-      <div class="form-check form-check-inline">
-        <%= b.radio_button(class: "form-check-input") %>
-        <%= b.label(class: "form-check-label") %>
+  <%= bootstrap_form_with(model: [current_user, @post], url: post_path(@post)) do |f| %>
+    
+    <div data-controller="autocomplete"> 
+      <label class="mb-2">コンビニチェーン</label>
+      <div class="form-check form-check-inline mb-2">
+        <%= f.radio_button :store, "セブンイレブン", true, class: "form-check-input", data: { autocomplete_target: "store" } %>
       </div>
-    <% end %>
+      <div class="form-check form-check-inline mb-2">
+        <%= f.radio_button :store, "ローソン", false, class: "form-check-input", data: { autocomplete_target: "store" } %>
+      </div>
+      <div class="form-check form-check-inline mb-2">
+        <%= f.radio_button :store, "ファミリーマート", false, class: "form-check-input", data: { autocomplete_target: "store" } %>
+      </div>
 
-    <%= f.text_field :title %>
+      <%= f.text_field :title %>
 
-    <%= f.file_field :image %>
+      <%= f.file_field :image %>
 
-    <label class="mb-2">使用するコンビニ商品</label>
-    <div data-controller="autocomplete">
+      <label class="mb-2">使用するコンビニ商品</label>
       <div class="mb-3 position-relative">
-        <%= text_field_tag :product_1_search, @post.product_1,
+        <%= text_field_tag :product_1_search, @post.product_names[0],
               class: "form-control",
               placeholder: "商品1を入力(必須)",
               data: { autocomplete_target: "input" } %>
@@ -26,7 +31,7 @@
       </div>
 
       <div class="mb-3 position-relative">
-        <%= text_field_tag :product_2_search, @post.product_2,
+        <%= text_field_tag :product_2_search, @post.product_names[1],
               class: "form-control",
               placeholder: "商品2を入力(任意)",
               data: { autocomplete_target: "input" } %>
@@ -38,7 +43,7 @@
       </div>
 
       <div class="mb-3 position-relative">
-        <%= text_field_tag :product_3_search, @post.product_3,
+        <%= text_field_tag :product_3_search, @post.product_names[2],
               class: "form-control",
               placeholder: "商品3を入力(任意)",
               data: { autocomplete_target: "input" } %>
@@ -53,15 +58,15 @@
     <label class="mb-2">その他の材料</label>
     <div class="row">
       <% 6.times do |i| %>
-        <div class="col-md-6 mb-2">
-          <%= text_field_tag "post[other_ingredients][]", "",
+        <div class="col-md-6 col-sm-6 mb-2">
+          <%= text_field_tag "post[other_ingredients][]",
                 class: "form-control",
                 placeholder: "材料（任意）" %>
         </div>
       <% end %>
     </div>
 
-    <%= f.text_area :steps %>
+    <%= f.text_area :steps, rows:5 %>
     
     <div class="text-center">
       <%= f.primary "更新する" %>

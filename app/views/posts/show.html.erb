@@ -1,22 +1,26 @@
 <div class="col-md-5 col-sm-8 mx-auto">
-  <p><%= @post.store %></p>
 
   <%= image_tag @post.image, class: "w-100 h-auto" %>
 
   <h3><%= @post.title %></h3>
+
+  <h5>コンビニチェーン</h5>
+  <p><%= @post.store %></p>
 
   <h5>使用するコンビニ商品</h5>
   <% @post.product_names.each do |pro| %>
     <p><%= pro %></p>
   <% end %>
 
-  <h5>それ以外の材料</h5>
-  <% @post.other_ingredients.each do |ing| %>
-    <p><%= ing %></p>
+  <% if @post.other_ingredients.reject(&:blank?).any? %>
+    <h5>それ以外の材料</h5>
+    <% @post.other_ingredients.each do |ing| %>
+      <p><%= ing %></p>
+    <% end %>
   <% end %>
 
   <h5>手順</h5>
-  <p><%= @post.steps %></p>
+  <%= simple_format(@post.steps) %>
 
   <div class="d-flex justify-content-end">
     <p class="me-2"><%= link_to @post.user.name, posts_user_path(@post.user) %></p>

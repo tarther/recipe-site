@@ -44,7 +44,6 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
-
   private
   def post_params
     params.require(:post).permit(:title, :image, :steps, :store, :product_1, :product_2, :product_3, other_ingredients: [])

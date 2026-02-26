@@ -9,7 +9,7 @@ class Post < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :bookmarked_users, through: :bookmarks, source: :user
   
-  validates :title, :image,
+  validates :title, :image, :store,
             :steps, :product_1, presence: true
 
   
